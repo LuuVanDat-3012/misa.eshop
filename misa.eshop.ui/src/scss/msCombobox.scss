@@ -1,0 +1,119 @@
+.combobox-container {
+    width: 200px;
+    height: 35px;
+    margin: auto;
+    position: relative;
+    user-select: none;
+    font-family: 'roboto';
+    font-weight: unset;
+}
+
+.selected {
+    width: 174px;
+    height: 33px;
+    outline: none;
+    border-radius: 5px;
+    padding-left: 10px;
+    box-sizing: border-box;
+}
+
+.border-forcus {}
+
+.border-warning .border-forcus {}
+
+.dropdow-button {
+    width: 24px;
+    height: 35px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.select {
+    position: absolute;
+    border: 1px solid rgba(214, 207, 207, 0.938);
+    transform-origin: 0 0;
+    width: 178px;
+    animation: 0.4s dropdown-menu forwards;
+    border-radius: 5px;
+    box-shadow: 1px 1px #bbbbbb;
+    z-index: 9999999999999;
+    margin-top: 4px;
+    box-sizing: border-box;
+    margin-left: -2px;
+    max-height: 200px;
+    overflow-y: scroll;
+}
+
+.select .option {
+    padding: 5px 10px;
+    height: 21px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    box-sizing: border-box;
+    border-radius: 2px;
+}
+
+.select .option:hover {
+    transition: 0.4s;
+    color: white;
+    background-color: #6b6f9d;
+}
+
+.isselected {
+    background-color: #6b6f9d !important;
+    color: #ffffff;
+}
+
+.dropdown-icon {
+    background-image: url("../../assets/icon/arrow-down-line.png");
+    background-repeat: no-repeat;
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    top: 16px;
+}
+
+.border-forcus .dropdown-icon {}
+
+.selected-icon {
+    width: 13px;
+    height: 13px;
+    margin-right: 15px;
+    display: none;
+    filter: white;
+}
+
+.ms-input:hover .ms-combobox {
+    border: 1px solid #6b6f9d;
+}
+
+.ms-input:focus .ms-combobox {
+    border: 1px solid #6b6f9d;
+}
+
+.ms-input-cbb {
+    width: 150px;
+    height: 32px;
+    box-sizing: border-box;
+    outline: 0;
+    border: 0;
+    padding: 5px 1px 4px 8px;
+}
+
+.ms-combobox {
+    border: 1px solid #bbbbbb;
+    border-radius: 3px;
+}
+
+.ms-combobox:hover {
+    border: 1px solid #6b6f9d;
+}
+
+.border-warning {
+    border: 1px solid #f63232;
+}

@@ -1,0 +1,110 @@
+.ms-header {
+    width: calc(100% - 150px);
+    height: 50px;
+    top: 0;
+    position: absolute;
+    left: 150px;
+    display: flex;
+    align-items: center;
+}
+
+.ms-header-title {
+    font-size: 18px;
+    position: absolute;
+    left: 21px;
+    font-weight: 700;
+}
+
+.ms-header-box-icon {
+    position: absolute;
+    width: 150px;
+    height: 100%;
+    right: 0;
+    display: flex;
+}
+
+.ms-icon-header {
+    width: 50px;
+    height: 50px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ms-icon-help {
+    background: url('../../assets/icon/icon_help_18.png') no-repeat;
+    width: 18px;
+    height: 18px;
+}
+
+.ms-icon-notification {
+    background: url('../../assets/icon/notify-18.png') no-repeat;
+    width: 18px;
+    height: 18px;
+}
+
+.ms-icon-support {
+    background: url('../../assets/icon/misasupport_1.png') no-repeat;
+    width: 45px;
+    height: 50px;
+    background-color: #2b3173;
+}
+
+.icon-bulkhead {
+    border-left: 1px solid #bbbbbb;
+}
+
+.ms-header-box-inner {
+    width: calc(100% - 150px - 150px);
+    height: 50px;
+    position: absolute;
+    right: 150px;
+    top: 0;
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+.ms-box-combobox {
+    position: absolute;
+    right: 200px;
+}
+
+.account {
+    width: 187.48px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: 0;
+    padding: 7px;
+    box-sizing: border-box;
+}
+
+.account-img {
+    width: 28px;
+    height: 28px;
+    background-image: url('../../assets/icon/Avatar-default.jpg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-right: 3px;
+}
+
+.account-user {
+    width: 122.48px;
+    height: 20px;
+    padding: 4px 0px 0px 5px;
+    font-size: 13px;
+    color: #212121;
+    font-weight: 700;
+    font-family: roboto, Tohoma, sans-serif;
+}
+
+.ms-action-account {
+    background-image: url("../../assets/icon/arrow-down-line.png");
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px;
+    background-position: 4px 7px;
+}

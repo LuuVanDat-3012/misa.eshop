@@ -1,0 +1,24 @@
+$srcIconMenuBar: '../../assets/icon/slibarmenu.png';
+$srcCommonIcon: '../../assets/icon/common-icon.png';
+.ms-icon-menubar {
+    background-image: url($srcIconMenuBar);
+    background-repeat: no-repeat;
+}
+
+.ms-icon-common {
+    background-image: url($srcCommonIcon);
+    background-repeat: no-repeat;
+}
+
+.padding-left-10px {
+    margin-left: 10px;
+}
+
+@-webkit-keyframes animationDisplay {
+    from {
+        transform: scale(0.5);
+    }
+    to {
+        transform: scale(1);
+    }
+}

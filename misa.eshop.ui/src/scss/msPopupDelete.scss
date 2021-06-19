@@ -1,0 +1,167 @@
+    .popup-model {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #00000099;
+        z-index: 999900000;
+        opacity: 0.9;
+    }
+    
+    .popup {
+        width: 400px;
+        height: 152px;
+        background-color: #ffffff;
+        z-index: 999999990999999;
+        position: absolute;
+        top: calc(50% - 204px);
+        left: calc(50% - 350px);
+        animation: 0.5s forwards;
+        border-radius: 3px;
+        display: flex;
+        flex-direction: column;
+        border-radius: 6px;
+    }
+    /**
+    CSS title popup
+    */
+    
+    .popup-title {
+        width: 100%;
+        height: 41px;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+    }
+    
+    .content-title {
+        width: 100%;
+        height: 41px;
+        padding: 10px 14px;
+        box-sizing: border-box;
+        font: 600 16px 'Roboto'!important;
+        color: #212121;
+        background-color: #f0f0f0;
+    }
+    
+    .btn-close {
+        position: absolute;
+        top: 14px;
+        right: 14px;
+        background: url('../../assets/icon/common-icon.png') no-repeat -1129px -130px;
+        width: 12px;
+        height: 11px;
+    }
+    /**
+  CSS content popup
+  */
+    
+    .popop-content {
+        height: 64px;
+        width: 100%;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        background-color: #ffffff;
+        padding: 10px;
+    }
+    
+    // .content-icon {
+    //     background: url('../../assets/icon/icon-popup.png') no-repeat -169px -3px;
+    //     width: 48px;
+    //     height: 48px;
+    //     margin-left: 5px;
+    //     background-color: #2b3173;
+    // }
+    
+    .content-text {
+        position: absolute;
+        word-wrap: break-word;
+        right: 0;
+        width: 324px;
+        height: 33px;
+        color: #000000;
+        font-size: 13px;
+    }
+    /**
+  CSS buttons
+  */
+    
+    .popup-button {
+        height: 49px;
+        width: 100%;
+        padding: 8px 0px 8px 6px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        background-color: #ffffff;
+        border-top: 1px solid #dfdfdf;
+        position: absolute;
+        bottom: 0;
+    }
+    
+    .btn-cancel-popup {
+        height: 32px;
+        width: 75px;
+        box-sizing: border-box;
+        text-align: center;
+        color: #2b3173;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        font-size: 12px;
+        font-weight: 700;
+        position: absolute;
+        right: 10px;
+    }
+    
+    .btn-cancel-popup-icon {
+        background: url('../../assets/icon/common-icon.png') no-repeat -255px -130px;
+        width: 10px;
+        height: 10px;
+        margin-right: 3px;
+    }
+    
+    .btn-cancel-popup-text {
+        padding: 0px 5px;
+    }
+    
+    .btn-cancel-popup:hover {
+        cursor: pointer;
+    }
+    
+    //CSS button Confirm
+    .btn-confirm {
+        height: 32px;
+        width: 75px;
+        position: absolute;
+        right: 93px;
+        box-sizing: border-box;
+        background-color: #df4646 !important;
+        color: #ffffff;
+        border-radius: 3px;
+        font-size: 12px;
+        font-weight: 700;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 7px;
+    }
+    
+    .btn-confirm-icon {
+        background: url('../../assets/icon/common-icon.png') no-repeat -105px -204px;
+        width: 10px;
+        height: 12px;
+        margin-right: 3px;
+    }
+    
+    .btn-confirm-text {
+        padding: 0px 5px;
+    }
+    
+    .btn-confirm:hover {
+        cursor: pointer;
+    }

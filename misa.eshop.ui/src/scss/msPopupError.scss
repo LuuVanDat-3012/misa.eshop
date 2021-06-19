@@ -1,0 +1,75 @@
+.ms-popup-model {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999999999999988888888888899999;
+  background-color: #00000099;
+  opacity: 0.6;
+}
+.ms-popup-error {
+  width: 24.75rem;
+  height: 9.5rem;
+  background-color: #ffffff;
+  z-index: 99999999099999999;
+  position: absolute;
+  top: calc(50% - 9.375rem);
+  left: calc(50% - 10.5rem);
+  animation: 0.5s forwards;
+  display: flex;
+  flex-direction: column;
+  border-radius: 3px !important;
+  .popup-error-title {
+    width: 100%;
+    height: 2.5625rem;
+    .error-title{
+        width: 100%;
+        height: 41px;
+        padding: 10px 14px;
+        box-sizing: border-box;
+        font: 600 16px 'Roboto'!important;
+        color: #212121;
+        background-color: #f0f0f0;
+        border-top-right-radius: 3px;
+        border-top-left-radius: 3px;
+    }
+  }
+  .popop-error-content {
+    width: 100%;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    box-sizing: border-box;
+
+    .content-error-icon {
+      background: url("../../assets/icon/icon-popup.png") no-repeat -57px -4px;
+      width: 2.5625rem;
+      height: 2.25rem;
+    }
+  }
+  .popup-error-btn {
+    width: 100%;
+    height: 3.0625rem;
+    padding: 8px 0px 8px 6px;
+    box-sizing: border-box;
+    .error-btn {
+      width: 4.6875rem;
+      height: 32px;
+      box-sizing: border-box;
+      padding: 9px 7px 7px 7px;
+      background-color: #2b3173;
+      color: #f0f0f0;
+      font-size: 12px;
+      border-radius: 3px;
+      text-align: center;
+      position: absolute;
+      right: 9px;
+    }
+    .error-btn:hover{
+        background-color: #6b6f9d;
+        cursor: pointer;
+    }
+  }
+}

@@ -1,0 +1,53 @@
+.ms-option-filter{
+    width: 32px;
+    height: 32px;
+    box-sizing: border-box;
+    font-family: 'roboto';
+    font-size: 12px;
+    font-weight: normal;
+    .btn-option{
+        display: flex;
+        justify-content: center;
+        background-color: #ffffff;
+        width: 31px;
+        height: 32px;
+        border: 0.5px solid #bbbbbb;
+        box-sizing: border-box;
+        line-height: 32px;
+        margin-left: 1px;
+    }
+    .btn-option:hover{
+        cursor: pointer;
+    }
+    .list-option{
+        position: relative;
+        background-color: #ffffff;
+        height: 150px;
+        width: 125px;
+        border: 1px solid #bbbbbb;
+        box-shadow: 1px 1px 1px #bbbbbb;
+        border-radius: 3px;
+        margin-top: 2px;
+        box-sizing: border-box;
+        .item-option{
+            height: 30px;
+            display: flex;
+            align-items: center;
+            background-color: #ffffff;
+           
+        }
+        .item-option .key-option{
+            padding-left: 16px;
+            z-index: 44444447777777 !important;
+        }
+        .item-option .text-option{
+            padding-left: 5px;
+            z-index: 44444447777777 !important;
+        }
+        .item-option:hover{
+            background-color: #6b6f9d;
+            cursor: pointer;
+        }
+    }
+
+}

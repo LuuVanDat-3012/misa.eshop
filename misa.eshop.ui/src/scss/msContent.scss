@@ -1,0 +1,14 @@
+.ms-content {
+    width: calc(100% - 150px);
+    height: calc(100% - 51px);
+    position: absolute;
+    left: 150px;
+    top: 50px;
+    padding: 8px;
+    background-color: #e5e6eb;
+    box-sizing: border-box;
+}
+
+.custom-ms-toolbar {
+    z-index: 8888888888888888888888888888;
+}
