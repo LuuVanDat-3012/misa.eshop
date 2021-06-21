@@ -206,6 +206,25 @@ namespace MISA.ApplicationCore.Service
                 TotalPage = totalPage
             };
         }
+
+        public ActionServiceResult GetStoreFilter(ObjectFilter objectFilter)
+        {
+            var param = this.MappingDataType<ObjectFilter>(objectFilter);
+            param.Add("TotalRecord", dbType: DbType.Int32, direction: ParameterDirection.Output);
+            var result = _baseRepository.Get($"Proc_FilterStore", param, commandType: CommandType.StoredProcedure);
+            var totalRecord = param.Get<int>("TotalRecord");
+            var toltalPage = (int)Math.Ceiling(Convert.ToDouble(totalRecord / objectFilter.PageSize)) + 1;
+            return new ActionServiceResult()
+            {
+                Success = true,
+                MISAcode = Enumeration.MISAcode.Success,
+                Message = "Lấy dữ liệu thành công !!!",
+                Data = result,
+                TotalPage = toltalPage,
+                TotalRecord = totalRecord
+            };
+
+        }
         #endregion
 
     }

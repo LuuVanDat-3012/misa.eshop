@@ -24,5 +24,12 @@ namespace MISA.Web.Controllers
               pageIndex, pageSize);
             return Ok(result);
         }
+
+        [HttpPost("Filter")]
+        public IActionResult GetStoreFilter([FromBody] ObjectFilter objectFilter)
+        {
+            var result = _storeService.GetStoreFilter(objectFilter);
+            return Ok(result);
+        }
     }
 }

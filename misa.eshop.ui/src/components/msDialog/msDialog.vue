@@ -209,7 +209,7 @@ export default {
         modifiedBy: '',
         editMode: 0
       },
-      storeFake: {
+      storeDefault: {
         storeId: '00000000-0000-0000-0000-000000000000',
         storeCode: '',
         storeName: '',
@@ -238,7 +238,8 @@ export default {
       isWarningCode: false,
       isWarningAddress: false,
       isWarningName: false,
-      error: false
+      error: false,
+      temp: {}
     }
   },
   methods: {
@@ -246,7 +247,7 @@ export default {
       this.$emit('displayPopupSave', this.store)
     },
     exitDialog () {
-      this.store = this.storeFake
+      this.store = this.storeDefault
       this.listCountry = []
       this.listDistrict = []
       this.listProvince = []
@@ -292,10 +293,6 @@ export default {
           this.$refs.cbbWard.keyFilter = ''
         }
       })
-
-      this.store.provinceId = ''
-      this.store.districtId = ''
-      this.store.wardId = ''
     },
     /**
      * Hàm lấy thông tin quận/huyện sau khi chọn tỉnh/thành phố
@@ -321,8 +318,6 @@ export default {
           this.$refs.cbbDistrict.keyFilter = ''
           this.$refs.cbbWard.keyFilter = ''
         })
-      this.store.districtId = ''
-      this.store.wardId = ''
     },
     /**
      * Hàm lấy thông tin xã/phường sau khi chọn quận/huyện
@@ -348,7 +343,6 @@ export default {
           this.$refs.cbbWard.itemSelected = {}
           this.$refs.cbbWard.keyFilter = ''
         })
-      this.store.wardId = null
     },
     confirmPosition (wardId) {
       this.wardId = wardId
@@ -450,15 +444,17 @@ export default {
           this.getDistrict(this.provinceId)
           if (this.districtId !== null) {
             this.getWard(this.districtId)
+            this.confirmPosition(this.wardId)
           }
         }
       }
+      this.store.provinceId = this.provinceId
 
       setTimeout(() => {
         this.getProvinceById()
         this.getDistrictById()
         this.getWardById()
-      }, 300)
+      }, 100)
     },
     /**
      * Hàm lấy thông tin tỉnh/thành phố theo mã tỉnh/thành phố

@@ -22,6 +22,7 @@
     flex-direction: column;
     border-radius: 3px;
     border: 1px solid #dfdfdf;
+    animation: animationDisplay 0.5s forwards;
 }
 
 
@@ -73,7 +74,6 @@ CSS content popup
 }
 
 .content-icon {
-    border-radius: 50%;
     background: url('../../assets/icon/icon-popup.png') no-repeat -169px -3px;
     width: 44px;
     height: 44px;
@@ -170,6 +170,8 @@ CSS buttons
     }
     //CSS button "Hủy"
     .ms-btn-popup-cancel {
+        height: 32px;
+        width: 64.75px;
         font-size: 12px;
         font-weight: 600;
         color: #2b3173;
@@ -177,6 +179,7 @@ CSS buttons
         display: flex;
         align-items: center;
         position: absolute;
+        box-sizing: border-box;
         right: 10px;
         .ms-btn-cancel-icon {
             background-position: -1104px -130px;
@@ -187,5 +190,8 @@ CSS buttons
         .ms-btn-cancel-popup-text {
             padding: 0px 5px;
         }
+    }
+    .ms-btn-popup-cancel:hover{
+        cursor: pointer;
     }
 }

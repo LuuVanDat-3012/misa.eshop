@@ -5,24 +5,24 @@
     "
     v-on:keyup.40="arrowDown()"
     v-on:keyup.38="arrowUp()"
+    v-on:keyup.13="enter()"
+    @click="focus()"
     class="ms-combobox"
-    v-on:keyup.13="enter"
   >
     <input
       type="text"
-      v-model="keyFilter"
+      v-model="keySelected"
       v-on:keyup="checkValue()"
       ref="inputcombobox"
       class="ms-input-cbb"
-      placeholder="Nhập để tìm kiếm"
     />
     <div class="select" v-if="isActived">
       <div
         class="option"
-        v-for="(item, index) in listItemInFilter"
+        v-for="(item, index) in items"
         :key="index"
         :class="index == indexSelected ? 'isselected' : ''"
-        @click="chooseItem(index, item)"
+        @click="enter(index, item.value, item.text)"
       >
         {{ item.text }}
       </div>
@@ -37,54 +37,39 @@
 </template>
 <script>
 export default {
-
   name: 'msCombobox',
   data () {
     return {
-      itemSelected: { value: 0, text: 'demo' },
+      items: [],
+      itemSelected: { value: 0, text: 'Cửa hàng 1' },
       isActived: false,
       keySelected: '',
       indexHover: 0,
-      keyFilter: '',
+      keyfilter: '',
       isFocus: false,
       indexSelected: 0,
       isWarning: false,
-      listItemInFilter: [],
-      itemId: '',
-      demo: []
+      listId: []
     }
   },
   methods: {
     onclickComboboxButton () {
-      this.listItemInFilter = this.items
-      if (this.isActived === false) {
-        this.isActived = true
-        this.$emit('loadData')
-      } else {
-        this.isActived = false
-      }
+      this.keyfilter = ''
+      this.isActived = !this.isActived
     },
     checkValue () {
-      this.listItemInFilter = []
-      this.keyFilter =
-        this.keyFilter.charAt(0).toUpperCase() + this.keyFilter.slice(1)
-      this.items.forEach(element => {
-        if (element.text.indexOf(this.keyFilter) !== -1) {
-          this.listItemInFilter.push({
-            value: element.value,
-            text: element.text
-          })
-        }
-      })
-      if (this.listItemInFilter.length > 0) {
+      if (this.itemsInFilter.length === 0) this.isWarning = true
+      if (this.itemsInFilter.length > 0) this.isWarning = false
+      if (
+        this.keySelected === '' ||
+        this.keySelected === this.itemSelected.text
+      ) { return }
+      if (this.itemsInFilter.length > 0) {
         this.isActived = true
-        this.isWarning = false
-      } else {
-        this.isWarning = true
       }
     },
     arrowDown () {
-      if (this.indexHover < this.listItemInFilter.length - 1) {
+      if (this.indexHover < this.itemsInFilter.length - 1) {
         this.indexHover++
       }
     },
@@ -93,31 +78,24 @@ export default {
         this.indexHover--
       }
     },
-    chooseItem (index, item) {
+    enter (index, val, text) {
       if (index != null) {
-        this.itemSelected = this.listItemInFilter[index]
+        this.itemSelected = this.itemsInFilter[index]
+        this.keySelected = this.itemsInFilter[index].text
         this.indexHover = index
         this.isActived = false
         this.setIndexSelected()
       } else {
         if (this.itemsInFilter[this.indexHover] != null) {
-          this.itemSelected = this.listItemInFilter[this.indexHover]
+          this.itemSelected = this.itemsInFilter[this.indexHover]
+          this.keySelected = this.itemsInFilter[this.indexHover].text
           this.isActived = false
+          this.setIndexSelected()
         }
       }
-      this.itemSelected = item
-      this.keyFilter = this.itemSelected.text
-      this.listItemInFilter = []
-      this.listItemInFilter = this.items
-      this.$emit('changeValue', this.itemSelected.value)
-    },
-    enter () {
-      this.itemSelected = this.listItemInFilter[this.indexSelected]
-      this.keyFilter = this.itemSelected.text
-      this.listItemInFilter = []
-      this.listItemInFilter = this.items
-      this.isActived = false
-      this.$emit('changeValue', this.itemSelected.value)
+      this.itemSelected.value = val
+      this.itemSelected.text = text
+      this.$emit('getPositionId')
     },
     setIndexSelected () {
       for (var i = 0; i < this.items.length; i++) {
@@ -126,23 +104,35 @@ export default {
           return
         }
       }
+    },
+    focus () {
+      this.isFocus = true
     }
   },
-  props: {
-    items: {
-      type: Array,
-      default: () => []
+  computed: {
+    itemsInFilter () {
+      return this.items.filter(item =>
+        item.text.toLowerCase().includes(this.keyfilter.toLowerCase())
+      )
     }
   },
-
   watch: {
-
+    keySelected: function () {
+      this.keyfilter = this.keySelected
+      if (this.itemsInFilter.length === 0) this.isActived = false
+      if (this.keySelected === '') this.isActived = false
+      if (this.keySelected !== this.itemSelected.text) {
+        this.itemSelected = { value: -1, text: '' }
+        this.indexSelected = 0
+        this.indexHover = 0
+      }
+    },
     indexHover: function () {
       this.indexSelected = this.indexHover
     }
   }
 }
 </script>
-<style lang="sass">
+<style lang="sass" scoped>
 @import '../../scss/msCombobox.scss'
 </style>

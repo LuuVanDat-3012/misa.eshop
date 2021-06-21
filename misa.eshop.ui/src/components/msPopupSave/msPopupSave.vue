@@ -4,7 +4,7 @@
     <div class="popup">
       <div class="popup-title">
         <div class="content-title">Dữ liệu chưa được lưu</div>
-        <div class="btn-close" ></div>
+        <div class="btn-close" @click="closePopupSave"></div>
       </div>
 
       <div class="popop-content">
@@ -19,7 +19,7 @@
           <div class="ms-icon-common ms-btn-save-icon"></div>
           <div class="ms-btn-save-text">Lưu</div>
         </div>
-        <div class="ms-btn-dont-save" @click="closePopupSave">
+        <div class="ms-btn-dont-save" @click="closeDialog">
           <div class="ms-icon-common ms-btn-dont-save-icon"></div>
           <div class="ms-btn-dont-save-text">Không lưu</div>
         </div>
@@ -44,22 +44,22 @@ export default {
     closePopupSave () {
       this.$emit('closePopupSave')
     },
+    closeDialog () {
+      this.$emit('closeDialog')
+    },
     saveData () {
-      this.store.provinceId = this.provinceId || null
-      this.store.districtId = this.districtId || null
-      this.store.wardId = this.wardId || null
-      this.store.editMode = 2
       var listStore = []
       listStore.push(this.store)
-      console.log(this.store)
-      // this.axios.post('Stores', listStore).then(response => {
-      //   if (response.data.success === true) {
-      //     this.$vToastify.success(response.data.message)
-      //     this.$emit('loadStore')
-      //   } else {
-      //     this.$emit('displayPopupError')
-      //   }
-      // })
+      this.axios.post('Stores', listStore).then(response => {
+        if (response.data.success === true) {
+          this.$vToastify.success(response.data.message)
+          this.$emit('loadStore')
+          this.$emit('closeDialog')
+          this.$emit('closePopupSave')
+        } else {
+          this.$emit('displayPopupError')
+        }
+      })
     }
   }
 }

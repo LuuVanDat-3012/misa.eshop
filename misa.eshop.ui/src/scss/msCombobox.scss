@@ -33,7 +33,6 @@
 
 .select {
     position: absolute;
-    border: 1px solid rgba(214, 207, 207, 0.938);
     transform-origin: 0 0;
     width: 178px;
     animation: 0.4s dropdown-menu forwards;
@@ -45,6 +44,7 @@
     margin-left: -2px;
     max-height: 200px;
     overflow-y: scroll;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .select .option {
@@ -64,7 +64,11 @@
     background-color: #6b6f9d;
 }
 
-.isselected {
+.isSelect {
+    background-color: #6b6f9d !important;
+    color: #ffffff;
+}
+.isHover{
     background-color: #6b6f9d !important;
     color: #ffffff;
 }

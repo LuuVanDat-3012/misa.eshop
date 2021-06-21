@@ -4,44 +4,45 @@
   left: 0;
   right: 0;
   bottom: 0;
-  opacity: 0.6 !important;
-  background-color: #666666;
+  opacity: 0.7 !important;
+  background-color: #000000;
   z-index: 99999 !important;
 }
 
 .ms-dialog-main {
-  width: 598px;
-  height: 466px;
+  width: 37.375rem;
+  height: 29.125rem;
   position: absolute;
-  top: calc(50% - 233px);
-  left: calc(50% - 394px);
+  top: calc(50% - 14.5625rem);
+  left: calc(50% - 24.625rem);
   z-index: 9999999 !important;
   display: flex;
   flex-direction: column;
-  border-radius: 3px;
+  border-radius: 0.1875rem;
+  box-shadow: rgb(136 136 136) 0px 0px 6px;
   animation: animationDisplay 0.5s forwards;
   /**CSS header dialog */
   .ms-dialog-header {
-    height: 51px;
+    height: 3.1875rem;
     width: 100%;
     box-sizing: border-box;
     background-color: #f0f0f0;
     display: flex;
     justify-content: space-between;
     color: #212121;
-    font-size: 16px;
+    font-size: 1rem;
     font-family: "roboto";
     font-weight: 700;
     align-items: center;
-    padding: 10px 14px;
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
+    padding: 0.625rem 0.875rem;
+    border-top-left-radius: 0.1875rem;
+    border-top-right-radius: 0.1875rem;
     .ms-dialog-title {
     }
     .ms-icon-close {
-      background: url("../../assets/icon/common-icon.png") no-repeat -1129px -130px;
-      width: 12px;
-      height: 11px;
+      background: url("../../assets/icon/common-icon.png") no-repeat -70.5625rem -8.125rem;
+      width: 0.75rem;
+      height: 0.6875rem;
     }
     .ms-icon-close:hover {
       cursor: pointer;
@@ -50,39 +51,39 @@
   /**CSS body dialog */
   .ms-dialog-body {
     width: 100%;
-    height: 473px;
+    height: 29.5625rem;
     box-sizing: border-box;
-    padding: 16px 16px 5px;
+    padding: 1rem 1rem 0.3125rem;
     display: flex;
     flex-direction: column;
     background-color: #ffffff;
-    border-bottom: 1px solid #dfdfdf;
+    border-bottom: 0.0625rem solid #dfdfdf;
     /** CSS cho dòng chỉ có 1 input*/
     .ms-row {
       width: 100%;
-      height: 32px;
+      height: 2rem;
       display: flex;
       flex-direction: row;
       align-items: center;
-      margin: 5px;
+      margin: 0.3125rem;
     }
     .ms-row-large {
       width: 100%;
-      height: 80px;
+      height: 5rem;
       display: flex;
       flex-direction: row;
-      margin: 5px;
+      margin: 0.3125rem;
       align-items: center;
       .ms-field-textarea {
-        width: calc(100% - 105px);
-        height: 80px;
-        border: 1px solid #d0d0d0;
-        border-radius: 2px;
+        width: calc(100% - 6.5625rem);
+        height: 5rem;
+        border: 0.0625rem solid #d0d0d0;
+        border-radius: 0.125rem;
         box-sizing: border-box;
-        padding: 5px 10px;
+        padding: 0.3125rem 0.625rem;
        
         &:focus-within {
-          border: 1px solid #636dde !important;
+          border: 0.0625rem solid #636dde !important;
         }
         > textarea {
           width: 100%;
@@ -90,7 +91,7 @@
           outline: none;
           border: none;
           resize: none;
-          font-size: 13px;
+          font-size: 0.8125rem;
           font-family: 'roboto';
         }
       }
@@ -111,25 +112,25 @@
     color: #ff0000;
   }
   .ms-row-text {
-    width: 100px;
-    height: 32px;
-    padding: 8px 5px 0px 0px;
+    width: 6.25rem;
+    height: 2rem;
+    padding: 0.5rem 0.3125rem 0rem 0rem;
     box-sizing: border-box;
   }
   .ms-form-text {
-    width: calc(100% - 105px);
-    height: 32px;
+    width: calc(100% - 6.5625rem);
+    height: 2rem;
     box-sizing: border-box;
-    border: 1px solid #d0d0d0;
-    border-radius: 2px;
+    border: 0.0625rem solid #d0d0d0;
+    border-radius: 0.125rem;
     &:focus-within {
-      border: 1px solid #636dde !important;
+      border: 0.0625rem solid #636dde !important;
     }
   }
   .ms-field-input {
     width: 99.99%;
     height: 100%;
-    padding: 5px 10px;
+    padding: 0.3125rem 0.625rem;
     box-sizing: border-box;
     outline: 0;
     border: 0;
@@ -138,34 +139,34 @@
   }
   // Custom
   .ms-form-text:focus {
-    border: 1px solid #636dde;
+    border: 0.0625rem solid #636dde;
   }
   .ms-form-select {
     position: relative;
     box-sizing: border-box;
-    height: 32px;
+    height: 2rem;
     display: flex;
     align-items: center;
     .ms-combobox {
-      width: 176px;
-      height: 32px;
+      width: 11rem;
+      height: 2rem;
     }
     .ms-combobox {
       .ms-input-cbb {
-        height: 30px;
+        height: 1.875rem;
         box-sizing: border-box;
         margin: 0;
-        width: 167px;
+        width: 10.4375rem;
       }
     }
     .custom-combobox {
       .option {
-        width: 176px;
+        width: 11rem;
       }
     }
   }
   .text-padding-10px {
-    padding-left: 10px;
+    padding-left: 0.625rem;
   }
   .align-item-left {
     justify-content: left;
@@ -174,15 +175,15 @@
   //CSS - dialog footer
   .ms-dialog-footer {
     width: 100%;
-    height: 130px;
+    height: 8.125rem;
     display: flex;
     flex-direction: row;
     box-sizing: border-box;
     background-color: #ffffff;
-    padding: 0px 8px;
+    padding: 0rem 0.5rem;
     align-items: center;
-    border-bottom-left-radius: 3px;
-    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 0.1875rem;
+    border-bottom-right-radius: 0.1875rem;
     // CSS- footer-left
     .ms-footer-left {
       display: flex;
@@ -191,40 +192,40 @@
       .ms-help {
         display: flex;
         align-items: center;
-        height: 35px;
-        padding: 7px;
+        height: 2.1875rem;
+        padding: 0.4375rem;
         box-sizing: border-box;
         .ms-help-icon {
           background-image: url("../../assets/icon/help.png");
-          width: 12px;
-          height: 12px;
+          width: 0.75rem;
+          height: 0.75rem;
           background-repeat: no-repeat;
-          margin-right: 3px;
+          margin-right: 0.1875rem;
         }
         .ms-help-text {
-          padding: 0px 5px;
+          padding: 0rem 0.3125rem;
         }
       }
     }
     // CSS- footer-right
     .ms-footer-right {
-      width: calc(100% - 86.23px);
-      height: 35px;
+      width: calc(100% - 5.3894rem);
+      height: 2.1875rem;
       display: flex;
       flex-direction: row;
       align-items: center;
       justify-content: left;
       //CSS button coomon
       .ms-footer-btn-common {
-        height: 35px;
+        height: 2.1875rem;
         display: flex;
         flex-direction: row;
         align-items: center;
         box-sizing: border-box;
         border-color: #2b3173 !important;
-        border-radius: 3px;
-        padding: 7px;
-        margin-left: 10px;
+        border-radius: 0.1875rem;
+        padding: 0.4375rem;
+        margin-left: 0.625rem;
         position: absolute;
       }
       .ms-footer-btn-common:hover {
@@ -234,21 +235,21 @@
       .ms-btn-save {
         background-color: #2b3173;
         color: #f2ffff;
-        font-size: 12px;
+        font-size: 0.75rem;
         font-weight: 600;
         background-color: #2b3173;
-        right: calc(107.75px + 140.09px);
-        width: 58.54px;
-        height: 35px;
+        right: calc(6.7344rem + 8.7556rem);
+        width: 3.6587rem;
+        height: 2.1875rem;
         box-sizing: border-box;
         .ms-btn-save-icon {
-          background-position: -330px -129px;
-          width: 11px;
-          height: 11px;
-          margin-right: 3px;
+          background-position: -20.625rem -8.0625rem;
+          width: 0.6875rem;
+          height: 0.6875rem;
+          margin-right: 0.1875rem;
         }
         .ms-btn-save-text {
-          padding: 0px 5px;
+          padding: 0rem 0.3125rem;
         }
       }
       .ms-btn-save-icon :hover {
@@ -256,64 +257,64 @@
       }
       //CSS button build
       .ms-btn-build {
-        border: 1px solid #2b3173;
-        font-size: 12px;
+        border: 0.0625rem solid #2b3173;
+        font-size: 0.75rem;
         font-weight: 600;
         color: #2b3173;
-        right: 107.75px;
+        right: 6.7344rem;
         .ms-btn-build-icon {
-          background-position: -29px -130px;
-          width: 11px;
-          height: 10px;
-          margin-right: 3px;
+          background-position: -1.8125rem -8.125rem;
+          width: 0.6875rem;
+          height: 0.625rem;
+          margin-right: 0.1875rem;
         }
         .ms-btn-build-text {
-          padding: 0px 5px;
+          padding: 0rem 0.3125rem;
         }
       }
       .ms-btn-build:hover .ms-btn-build-text {
         color: #6b6f9d;
       }
       .ms-btn-build:hover .ms-btn-build-icon {
-        background-position: -29px -155px;
-        width: 11px;
-        height: 10px;
+        background-position: -1.8125rem -9.6875rem;
+        width: 0.6875rem;
+        height: 0.625rem;
       }
       // CSS button Cancel
       .ms-btn-cancel {
-        font-size: 12px;
+        font-size: 0.75rem;
         font-weight: 600;
         color: #2b3173;
-        right: 16px;
+        right: 1rem;
         .ms-btn-cancel-icon {
-          background-position: -1104px -130px;
-          width: 12px;
-          height: 11px;
-          margin-right: 3px;
+          background-position: -69rem -8.125rem;
+          width: 0.75rem;
+          height: 0.6875rem;
+          margin-right: 0.1875rem;
         }
         .ms-btn-cancel-text {
-          padding: 0px 5px;
+          padding: 0rem 0.3125rem;
         }
       }
     }
   }
   .error {
-    border: 1px solid #ff0000 !important;
+    border: 0.0625rem solid #ff0000 !important;
   }
 
   // CSS lỗi
   .zoomOut {
-    width: 440px !important;
+    width: 27.5rem !important;
   }
   .ms-icon-error {
-    background: url("../../assets/icon/error_input.png") no-repeat -1px -1px;
-    width: 14px;
-    height: 14px;
-    margin: 0px 4px;
+    background: url("../../assets/icon/error_input.png") no-repeat -0.0625rem -0.0625rem;
+    width: 0.875rem;
+    height: 0.875rem;
+    margin: 0rem 0.25rem;
   }
   .icon-error-special {
     position: absolute;
-    right: 14px;
-    top: 110px;
+    right: 0.875rem;
+    top: 6.875rem;
   }
 }

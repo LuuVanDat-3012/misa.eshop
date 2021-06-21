@@ -23,14 +23,16 @@
     />
     <ms-popup-save
       v-show="isActivePopupSave"
-      @closePopupSave="isActivePopupSave = !isActivePopupSave"
+      @loadStore="loadStore"
+      @closePopupSave="isActivePopupSave = fasle"
+      @closeDialog="closeDialog"
       ref="popupSave"
     />
     <ms-popup-delete
       v-show="isActivePopupDelete"
       ref="popupDelete"
       @loadStore="loadStore"
-      @closePopupDelete="isActivePopupDelete = !isActivePopupDelete"
+      @closePopupDelete="isActivePopupDelete = false"
     />
     <ms-popup-error
       v-show="isActivePopupError"
@@ -39,6 +41,7 @@
   </div>
 </template>
 <script>
+import _ from 'lodash'
 export default {
   name: 'msContent',
   data () {
@@ -66,6 +69,7 @@ export default {
       this.$refs.dialog.focusInput()
     },
     closeDialog () {
+      this.isActivePopupSave = false
       this.isActiveDialog = false
     },
     /**
@@ -91,7 +95,7 @@ export default {
       this.axios.get('Stores/' + this.storeSelected.storeId).then(response => {
         this.isActiveDialog = true
         this.editMode = 2
-        this.storeNew = response.data.data[0]
+        this.$refs.dialog.focusInput()
         this.$refs.dialog.editStore(response.data.data[0])
       })
     },
@@ -124,10 +128,16 @@ export default {
       })
     },
     displayPopupSave (item) {
-      if (JSON.stringify(item) !== JSON.stringify(this.storeNew)) {
-        this.$refs.popupSave.store = item
-        this.isActivePopupSave = true
-      }
+      this.axios.get('Stores/' + this.storeSelected.storeId).then(response => {
+        this.storeNew = response.data.data[0]
+        if (!_.isEqual(item, this.storeNew)) {
+          item.editMode = this.editMode
+          this.$refs.popupSave.store = item
+          this.isActivePopupSave = true
+        } else {
+          this.isActiveDialog = false
+        }
+      })
     }
   }
 }

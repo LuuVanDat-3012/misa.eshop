@@ -22,7 +22,7 @@
                 <input
                   type="text"
                   class="ms-input"
-                  v-model="filterCode"
+                  v-model="objectFilter.filterCode"
                   @keyup.enter="searchWithFilter"
                 />
               </div>
@@ -39,7 +39,7 @@
                 <input
                   type="text"
                   class="ms-input"
-                  v-model="filterName"
+                  v-model="objectFilter.filterName"
                   @keyup.enter="searchWithFilter"
                 />
               </div>
@@ -56,7 +56,7 @@
                 <input
                   type="text"
                   class="ms-input"
-                  v-model="filterAddress"
+                  v-model="objectFilter.filterAddress"
                   @keyup.enter="searchWithFilter"
                 />
               </div>
@@ -73,7 +73,7 @@
                 <input
                   type="text"
                   class="ms-input"
-                  v-model="filterPhone"
+                  v-model="objectFilter.filterPhone"
                   @keyup.enter="searchWithFilter"
                 />
               </div>
@@ -85,7 +85,7 @@
               <span>Trạng thái</span>
             </div>
             <div class="ms-filter">
-              <ms-combobox class="ms-cbb-filter" :items="this.items" ref=""/>
+              <ms-combobox class="ms-cbb-filter" :items="this.items" ref="cbbFilter"/>
             </div>
           </th>
         </tr>
@@ -116,7 +116,7 @@
       </div>
       <div class="ms-page-text">Trang {{ curentPage }}</div>
       <div class="ms-input-page">
-        <input type="text" v-model="pageIndex" @keyup.enter="goPage" />
+        <input type="text" v-model="objectFilter.pageIndex" @keyup.enter="goPage" />
       </div>
       <div class="ms-page-text">trên {{ totalPage }}</div>
       <div class="ms-btn-page-common" @click="nextPage">
@@ -129,7 +129,7 @@
         <div class="ms-reload-icon ms-icon-common" @click="loadStoreDefault"></div>
       </div>
       <div class="ms-select-pagesize">
-        <select name="" id="" v-model="pageSize">
+        <select name="" id="" v-model="objectFilter.pageSize">
           <option :value="15" :selected="true">15</option>
           <option :value="25">25</option>
           <option :value="50">50</option>
@@ -137,7 +137,7 @@
         </select>
       </div>
 
-      <div class="ms-paging-detail">Hiện thị {{(pageIndex-1)*pageSize +1}} - {{pageIndex*pageSize +1  }} trên {{totalRecord}} bản ghi</div>
+      <div class="ms-paging-detail">Hiện thị {{(objectFilter.pageIndex-1)*objectFilter.pageSize+ 1}} - {{maxSize}} trên {{totalRecord}} bản ghi</div>
     </div>
   </div>
 </template>
@@ -154,13 +154,6 @@ export default {
       storeSelected: '',
       storeFake: '',
       isLoading: false,
-      filterCode: '',
-      filterName: '',
-      filterAddress: '',
-      filterPhone: '',
-      filterStatus: 1,
-      pageSize: 15,
-      pageIndex: 1,
       totalPage: 1,
       curentPage: 1,
       totalRecord: 0,
@@ -169,9 +162,36 @@ export default {
       statusSortAddress: true,
       statusSortPhone: true,
       items: [
+        { value: 2, text: 'Tất cả' },
         { value: 1, text: 'Đang hoạt động' },
         { value: 0, text: 'Ngưng hoạt động' }
-      ]
+      ],
+      objectFilter: {
+        filterCode: '',
+        filterName: '',
+        filterAddress: '',
+        filterPhone: '',
+        filterStatus: 2,
+        optionCode: 1,
+        optionName: 1,
+        optionAddress: 1,
+        optionPhone: 1,
+        pageIndex: 1,
+        pageSize: 15
+      },
+      objectFilterTemp: {
+        filterCode: '',
+        filterName: '',
+        filterAddress: '',
+        filterPhone: '',
+        filterStatus: 2,
+        optionCode: 1,
+        optionName: 1,
+        optionAddress: 1,
+        optionPhone: 1,
+        pageIndex: 1,
+        pageSize: 15
+      }
     }
   },
   methods: {
@@ -189,10 +209,9 @@ export default {
      */
     loadStoreDefault () {
       this.isLoading = true
-      this.pageIndex = 1
-      this.pageSize = 15
+      this.objectFilter = this.objectFilterTemp
       this.axios
-        .get('Stores/filter?storeCode=&storeName=&address=&phoneNumber=&status=1&pageIndex=1&pageSize=15')
+        .post('Stores/Filter', this.objectFilterTemp)
         .then(response => {
           this.listStore = response.data.data
           this.sizeGrid = response.data.data * 31.4 + 64
@@ -215,22 +234,15 @@ export default {
     },
     searchWithFilter () {
       this.isLoading = true
+      this.objectFilter.optionCode = this.$refs.optionCode.optionSelected.value
+      this.objectFilter.optionName = this.$refs.optionName.optionSelected.value
+      this.objectFilter.optionAddress = this.$refs.optionAddress.optionSelected.value
+      this.objectFilter.optionPhone = this.$refs.optionPhone.optionSelected.value
+      this.objectFilter.filterStatus = this.$refs.cbbFilter.itemSelected.value
+
       this.axios
-        .get(
-          'Stores/filter?storeCode=' +
-            this.filterCode +
-            '&storeName=' +
-            this.filterName +
-            '&address=' +
-            this.filterAddress +
-            '&phoneNumber=' +
-            this.filterPhone +
-            '&status=' +
-            this.filterStatus +
-            '&pageIndex=' +
-            this.pageIndex +
-            '&pageSize=' +
-            this.pageSize
+        .post(
+          'Stores/Filter', this.objectFilter
         )
         .then(response => {
           this.listStore = response.data.data
@@ -360,9 +372,9 @@ export default {
      * CreatedBy: LVDat(18/06/2021)
      */
     nextPage () {
-      if (this.pageIndex < this.totalPage) {
-        this.pageIndex++
-        this.curentPage = this.pageIndex
+      if (this.objectFilter.pageIndex < this.totalPage) {
+        this.objectFilter.pageIndex++
+        this.curentPage = this.objectFilter.pageIndex
         this.searchWithFilter()
       }
     },
@@ -371,28 +383,28 @@ export default {
      * CreatedBy: LVDat(18/06/2021)
      */
     nextLastPage () {
-      this.pageIndex = this.totalPage
+      this.objectFilter.pageIndex = this.totalPage
       this.curentPage = this.totalPage
       this.searchWithFilter()
     },
     goPage () {
-      var tmp = this.pageIndex
-      if (this.pageIndex <= 0 || this.pageIndex > this.totalPage) {
-        this.pageIndex = tmp
+      var tmp = this.objectFilter.pageIndex
+      if (this.objectFilter.pageIndex <= 0 || this.objectFilter.pageIndex > this.totalPage) {
+        this.objectFilter.pageIndex = tmp
       } else {
-        this.curentPage = this.pageIndex
+        this.curentPage = this.objectFilter.pageIndex
         this.searchWithFilter()
       }
     },
     backtoFirstPage () {
-      this.pageIndex = 1
-      this.curentPage = this.pageIndex
+      this.objectFilter.pageIndex = 1
+      this.curentPage = this.objectFilter.pageIndex
       this.searchWithFilter()
     },
     prePage () {
-      if (this.pageIndex > 1) {
-        this.pageIndex--
-        this.curentPage = this.pageIndex
+      if (this.objectFilter.pageIndex > 1) {
+        this.objectFilter.pageIndex--
+        this.curentPage = this.objectFilter.pageIndex
         this.searchWithFilter()
       }
     }
@@ -404,8 +416,9 @@ export default {
    */
   mounted () {
     this.isLoading = true
+    this.$refs.cbbFilter.itemSelected = this.items[0]
     this.axios
-      .get('Stores/filter?storeCode=&storeName=&address=&phoneNumber=&status=1&pageIndex=1&pageSize=15')
+      .post('Stores/Filter', this.objectFilter)
       .then(response => {
         this.listStore = response.data.data
         this.sizeGrid = response.data.data * 31.4 + 64
@@ -420,9 +433,15 @@ export default {
   },
   watch: {
     pageSize: function () {
-      this.pageIndex = 1
+      this.objectFilter.pageIndex = 1
       this.curentPage = 1
       this.searchWithFilter()
+    }
+  },
+  computed: {
+    maxSize: function () {
+      if (this.objectFilter.pageIndex * this.objectFilter.pageSize > this.totalRecord) { return this.totalRecord }
+      return this.objectFilter.pageIndex * this.objectFilter.pageSize
     }
   }
 }

@@ -16,5 +16,6 @@ namespace MISA.ApplicationCore.Interface.Service
 
         ActionServiceResult GetStoreByFilter( string storeCode,  string storeName,  string address,  string phoneNumber,  int? status,
              int pageIndex,  int pageSize);
+        ActionServiceResult GetStoreFilter(ObjectFilter objectFilter);
     }
 }
