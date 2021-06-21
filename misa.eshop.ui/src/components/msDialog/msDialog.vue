@@ -244,7 +244,14 @@ export default {
   },
   methods: {
     closeDialog () {
-      this.$emit('displayPopupSave', this.store)
+      this.store.provinceId = this.provinceId || null
+      this.store.districtId = this.districtId || null
+      this.store.wardId = this.wardId || null
+      if (this.editMode === 1) {
+        this.exitDialog()
+      } else {
+        this.$emit('displayPopupSave', this.store)
+      }
     },
     exitDialog () {
       this.store = this.storeDefault
@@ -262,6 +269,7 @@ export default {
      * CreatedBy: LVDat (16/06/2021)
      */
     getCountry () {
+      this.listProvince = []
       this.axios.get('Country?pageIndex=1&pageSize=100').then(response => {
         response.data.data.forEach(element => {
           this.listCountry.push({

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "vxj9738uSXu0XXTE1NNgw81N8YW5uFLk5gWkgzUvVV7uYHkz5s4Bm9YFiGzGCwvFx4yRCxRzvaoa02aCY24yDw==",
+  "dgSpecHash": "Tak7+gRryWgfgrs5hqzDQAmMWOgiKuGxB1ZDyaS7To/pDCxNfvK1DfXnntKbJqWQnuhS7kMCRGPiN7gkapokRQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\lvdat\\Documents\\misa.eshop\\misa.eshop.api\\MISA.Web\\MISA.Web.csproj",
+  "projectFilePath": "C:\\Users\\lvdat\\Documents\\misa.eshop.api\\MISA.Web\\MISA.Web.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\lvdat\\.nuget\\packages\\dapper\\2.0.90\\dapper.2.0.90.nupkg.sha512",
     "C:\\Users\\lvdat\\.nuget\\packages\\epplus\\5.6.4\\epplus.5.6.4.nupkg.sha512",

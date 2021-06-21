@@ -136,6 +136,9 @@ CSS buttons
             padding: 0px 5px;
         }
     }
+    .ms-btn-save:hover {
+        cursor: pointer;
+    }
     // CSS button 'Không lưu"
     .ms-btn-dont-save {
         color: #2b3173;
@@ -164,7 +167,7 @@ CSS buttons
             padding: 0px 5px;
         }
     }
-      .ms-btn-dont-save:hover{
+    .ms-btn-dont-save:hover {
         color: #6b6f9d;
         cursor: pointer;
     }
@@ -191,7 +194,7 @@ CSS buttons
             padding: 0px 5px;
         }
     }
-    .ms-btn-popup-cancel:hover{
+    .ms-btn-popup-cancel:hover {
         cursor: pointer;
     }
 }

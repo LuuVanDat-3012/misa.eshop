@@ -16,14 +16,6 @@ namespace MISA.Web.Controllers
         {
             _storeService = storeService;
         }
-        [HttpGet("filter")]
-        public IActionResult GetStoreByFilter([FromQuery] string storeCode, [FromQuery] string storeName, [FromQuery] string address, [FromQuery] string phoneNumber, [FromQuery] int status,
-            [FromQuery] int pageIndex, [FromQuery] int pageSize)
-        {
-           var result = _storeService.GetStoreByFilter(storeCode, storeName, address, phoneNumber, status,
-              pageIndex, pageSize);
-            return Ok(result);
-        }
 
         [HttpPost("Filter")]
         public IActionResult GetStoreFilter([FromBody] ObjectFilter objectFilter)

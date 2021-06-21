@@ -85,7 +85,12 @@
               <span>Trạng thái</span>
             </div>
             <div class="ms-filter">
-              <ms-combobox class="ms-cbb-filter" :items="this.items" ref="cbbFilter"/>
+              <ms-combobox
+                class="ms-cbb-filter"
+                :items="this.items"
+                ref="cbbFilter"
+                @changeValue="getFilterStatus"
+              />
             </div>
           </th>
         </tr>
@@ -116,7 +121,11 @@
       </div>
       <div class="ms-page-text">Trang {{ curentPage }}</div>
       <div class="ms-input-page">
-        <input type="text" v-model="objectFilter.pageIndex" @keyup.enter="goPage" />
+        <input
+          type="text"
+          v-model="objectFilter.pageIndex"
+          @keyup.enter="goPage"
+        />
       </div>
       <div class="ms-page-text">trên {{ totalPage }}</div>
       <div class="ms-btn-page-common" @click="nextPage">
@@ -126,10 +135,13 @@
         <div class="ms-last-page-icon ms-icon-common"></div>
       </div>
       <div class="ms-btn-page-common boder-blue">
-        <div class="ms-reload-icon ms-icon-common" @click="loadStoreDefault"></div>
+        <div
+          class="ms-reload-icon ms-icon-common"
+          @click="loadStoreDefault"
+        ></div>
       </div>
       <div class="ms-select-pagesize">
-        <select name="" id="" v-model="objectFilter.pageSize">
+        <select name="" id="" v-model="pageSize">
           <option :value="15" :selected="true">15</option>
           <option :value="25">25</option>
           <option :value="50">50</option>
@@ -137,7 +149,11 @@
         </select>
       </div>
 
-      <div class="ms-paging-detail">Hiện thị {{(objectFilter.pageIndex-1)*objectFilter.pageSize+ 1}} - {{maxSize}} trên {{totalRecord}} bản ghi</div>
+      <div class="ms-paging-detail">
+        Hiện thị
+        {{ (objectFilter.pageIndex - 1) * objectFilter.pageSize + 1 }} -
+        {{ maxSize }} trên {{ totalRecord }} kết quả
+      </div>
     </div>
   </div>
 </template>
@@ -156,6 +172,7 @@ export default {
       isLoading: false,
       totalPage: 1,
       curentPage: 1,
+      pageSize: 15,
       totalRecord: 0,
       statusSortCode: true,
       statusSortName: true,
@@ -164,7 +181,7 @@ export default {
       items: [
         { value: 2, text: 'Tất cả' },
         { value: 1, text: 'Đang hoạt động' },
-        { value: 0, text: 'Ngưng hoạt động' }
+        { value: 0, text: 'Ngừng hoạt động' }
       ],
       objectFilter: {
         filterCode: '',
@@ -226,12 +243,25 @@ export default {
     },
     /**
      * Hàm gửi yêu cầu sửa cửa hàng và gửi đi store được chọn
-     * CreatedBy: LVDat (16/06/2021)F
+     * CreatedBy: LVDat (16/06/2021)
      */
     editStore (store) {
       this.storeSelected = store
       this.$emit('editStore')
     },
+    /**
+     * Hàm tìm kiếm sau khi click chọn trạng thái hoạt động
+     * CreatedBy: LVDat (19/06/2021)
+     */
+    getFilterStatus (item) {
+      this.objectFilter.pageIndex = 1
+      this.curentPage = 1
+      this.searchWithFilter()
+    },
+    /**
+     * Hàm gửi các yêu cầu tìm kiếm trả danh sách cửa hagnf theo yêu cầu
+     * CreatedBy: LVDat (19/06/2021)
+     */
     searchWithFilter () {
       this.isLoading = true
       this.objectFilter.optionCode = this.$refs.optionCode.optionSelected.value
@@ -239,7 +269,7 @@ export default {
       this.objectFilter.optionAddress = this.$refs.optionAddress.optionSelected.value
       this.objectFilter.optionPhone = this.$refs.optionPhone.optionSelected.value
       this.objectFilter.filterStatus = this.$refs.cbbFilter.itemSelected.value
-
+      console.log(JSON.stringify(this.objectFilter))
       this.axios
         .post(
           'Stores/Filter', this.objectFilter
@@ -254,6 +284,48 @@ export default {
             this.storeSelected = response.data.data[0]
           }
         })
+    },
+
+    /**
+     * Hàm chuyển đến trang tiếp theo
+     * CreatedBy: LVDat(18/06/2021)
+     */
+    nextPage () {
+      if (this.objectFilter.pageIndex < this.totalPage) {
+        this.objectFilter.pageIndex++
+        this.curentPage = this.objectFilter.pageIndex
+        this.searchWithFilter()
+      }
+    },
+    /**
+     * Hàm chuyển đến trang cuối cùng
+     * CreatedBy: LVDat(18/06/2021)
+     */
+    nextLastPage () {
+      this.objectFilter.pageIndex = this.totalPage
+      this.curentPage = this.totalPage
+      this.searchWithFilter()
+    },
+    goPage () {
+      var tmp = this.objectFilter.pageIndex
+      if (this.objectFilter.pageIndex <= 0 || this.objectFilter.pageIndex > this.totalPage) {
+        this.objectFilter.pageIndex = tmp
+      } else {
+        this.curentPage = this.objectFilter.pageIndex
+        this.searchWithFilter()
+      }
+    },
+    backtoFirstPage () {
+      this.objectFilter.pageIndex = 1
+      this.curentPage = this.objectFilter.pageIndex
+      this.searchWithFilter()
+    },
+    prePage () {
+      if (this.objectFilter.pageIndex > 1) {
+        this.objectFilter.pageIndex--
+        this.curentPage = this.objectFilter.pageIndex
+        this.searchWithFilter()
+      }
     },
     /**
      * Hàm sắp xếp danh sách cửa hàng theo tên cửa hàng
@@ -366,48 +438,8 @@ export default {
           return 0
         })
       }
-    },
-    /**
-     * Hàm chuyển đến trang tiếp theo
-     * CreatedBy: LVDat(18/06/2021)
-     */
-    nextPage () {
-      if (this.objectFilter.pageIndex < this.totalPage) {
-        this.objectFilter.pageIndex++
-        this.curentPage = this.objectFilter.pageIndex
-        this.searchWithFilter()
-      }
-    },
-    /**
-     * Hàm chuyển đến trang cuối cùng
-     * CreatedBy: LVDat(18/06/2021)
-     */
-    nextLastPage () {
-      this.objectFilter.pageIndex = this.totalPage
-      this.curentPage = this.totalPage
-      this.searchWithFilter()
-    },
-    goPage () {
-      var tmp = this.objectFilter.pageIndex
-      if (this.objectFilter.pageIndex <= 0 || this.objectFilter.pageIndex > this.totalPage) {
-        this.objectFilter.pageIndex = tmp
-      } else {
-        this.curentPage = this.objectFilter.pageIndex
-        this.searchWithFilter()
-      }
-    },
-    backtoFirstPage () {
-      this.objectFilter.pageIndex = 1
-      this.curentPage = this.objectFilter.pageIndex
-      this.searchWithFilter()
-    },
-    prePage () {
-      if (this.objectFilter.pageIndex > 1) {
-        this.objectFilter.pageIndex--
-        this.curentPage = this.objectFilter.pageIndex
-        this.searchWithFilter()
-      }
     }
+
   },
 
   /**
@@ -417,6 +449,7 @@ export default {
   mounted () {
     this.isLoading = true
     this.$refs.cbbFilter.itemSelected = this.items[0]
+    this.$refs.cbbFilter.keyFilter = this.items[0].text
     this.axios
       .post('Stores/Filter', this.objectFilter)
       .then(response => {
@@ -434,6 +467,7 @@ export default {
   watch: {
     pageSize: function () {
       this.objectFilter.pageIndex = 1
+      this.objectFilter.pageSize = this.pageSize
       this.curentPage = 1
       this.searchWithFilter()
     }

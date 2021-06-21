@@ -1,11 +1,11 @@
-.ms-option-filter{
+.ms-option-filter {
     width: 32px;
     height: 32px;
     box-sizing: border-box;
     font-family: 'roboto';
     font-size: 12px;
     font-weight: normal;
-    .btn-option{
+    .btn-option {
         display: flex;
         justify-content: center;
         background-color: #ffffff;
@@ -16,38 +16,36 @@
         line-height: 32px;
         margin-left: 1px;
     }
-    .btn-option:hover{
+    .btn-option:hover {
         cursor: pointer;
     }
-    .list-option{
+    .list-option {
         position: relative;
         background-color: #ffffff;
         height: 150px;
         width: 125px;
         border: 1px solid #bbbbbb;
-        box-shadow: 1px 1px 1px #bbbbbb;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
         border-radius: 3px;
         margin-top: 2px;
         box-sizing: border-box;
-        .item-option{
+        .item-option {
             height: 30px;
             display: flex;
             align-items: center;
             background-color: #ffffff;
-           
         }
-        .item-option .key-option{
+        .item-option .key-option {
             padding-left: 16px;
             z-index: 44444447777777 !important;
         }
-        .item-option .text-option{
+        .item-option .text-option {
             padding-left: 5px;
             z-index: 44444447777777 !important;
         }
-        .item-option:hover{
+        .item-option:hover {
             background-color: #6b6f9d;
             cursor: pointer;
         }
     }
-
 }

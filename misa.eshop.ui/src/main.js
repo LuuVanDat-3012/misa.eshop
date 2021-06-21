@@ -8,6 +8,8 @@ import VueColumnsResizable from 'vue-columns-resizable'
 import './lib/axios'
 import './filter/msFilter'
 import VueToastify from 'vue-toastify'
+import VueHotkey from 'v-hotkey'
+Vue.use(VueHotkey)
 
 Vue.use(VueToastify, {
   singular: true,

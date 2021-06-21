@@ -24,7 +24,7 @@
     <ms-popup-save
       v-show="isActivePopupSave"
       @loadStore="loadStore"
-      @closePopupSave="isActivePopupSave = fasle"
+      @closePopupSave="isActivePopupSave = false"
       @closeDialog="closeDialog"
       ref="popupSave"
     />
@@ -65,7 +65,7 @@ export default {
       this.editMode = 1
       this.$refs.grid.storeSelected = this.$refs.dialog.store
       this.$refs.dialog.getCountry()
-      this.$refs.dialog.getProvince('123')
+      this.$refs.dialog.getProvince('')
       this.$refs.dialog.focusInput()
     },
     closeDialog () {
@@ -112,6 +112,7 @@ export default {
      */
     closePopupError () {
       this.isActivePopupError = false
+      this.$refs.dialog.isWarningCode = true
       this.$refs.dialog.focusInput()
     },
     /**
@@ -127,6 +128,10 @@ export default {
         this.$refs.dialog.editStore(store)
       })
     },
+    /**
+     * Hàm kiểm tra dữ liệu đã bị thay đổi chưa
+     * CreatedBy: LVDat (19/06/2021)
+     */
     displayPopupSave (item) {
       this.axios.get('Stores/' + this.storeSelected.storeId).then(response => {
         this.storeNew = response.data.data[0]
@@ -136,6 +141,7 @@ export default {
           this.isActivePopupSave = true
         } else {
           this.isActiveDialog = false
+          this.$refs.dialog.listCountry = []
         }
       })
     }
