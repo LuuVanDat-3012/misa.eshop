@@ -76,15 +76,15 @@
     //     margin-left: 5px;
     //     background-color: #2b3173;
     // }
-    
     .content-text {
         position: absolute;
         word-wrap: break-word;
         right: 0;
-        width: 324px;
+        width: 310px;
         height: 33px;
         color: #000000;
         font-size: 13px;
+        padding-right: 10px;
     }
     /**
   CSS buttons
@@ -155,12 +155,12 @@
     .btn-confirm-icon {
         background: url('../../assets/icon/common-icon.png') no-repeat -105px -204px;
         width: 10px;
-        height: 12px;
-        margin-right: 3px;
+        height: 14px;
+        margin-left: 3px;
     }
     
     .btn-confirm-text {
-        padding: 0px 5px;
+        padding: 0px 8px;
     }
     
     .btn-confirm:hover {

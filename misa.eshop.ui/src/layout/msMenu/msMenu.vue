@@ -40,7 +40,7 @@
             </span>
             <span class="ms-menu-text text-padding-left">Quản lý cửa hàng</span>
           </div>
-          <div class="ms-menu-item flex">
+          <div class="ms-menu-item flex item-special">
             <span class=" ms-icon-menubar-model">
               <div class="ms-menu-icon-commodity ms-icon-menubar padding-left-10px"></div>
             </span>

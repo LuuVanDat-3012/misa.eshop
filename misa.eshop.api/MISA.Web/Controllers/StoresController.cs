@@ -17,6 +17,12 @@ namespace MISA.Web.Controllers
             _storeService = storeService;
         }
 
+        /// <summary>
+        /// Lấy danh sách cửa hàng theo Filter 
+        /// </summary>
+        /// <param name="objectFilter">Filter</param>
+        /// <returns>! danh sách cửa hàng</returns>
+        /// CreatedBy: Lưu Văn Đạt(15/06/2021)
         [HttpPost("Filter")]
         public IActionResult GetStoreFilter([FromBody] ObjectFilter objectFilter)
         {

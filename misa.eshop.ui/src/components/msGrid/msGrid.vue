@@ -158,6 +158,7 @@
   </div>
 </template>
 <script>
+import { TypeStatus } from '../../constant/types'
 export default {
   name: 'msGrid',
   components: {
@@ -167,36 +168,32 @@ export default {
     return {
       listStore: [], // Biến lưu danh sách các cửa hàng
       sizeGrid: 0, // Biến xác định kích thước của bảng
-      storeSelected: '',
-      storeFake: '',
-      isLoading: false,
-      totalPage: 1,
-      curentPage: 1,
-      pageSize: 15,
-      totalRecord: 0,
-      statusSortCode: true,
-      statusSortName: true,
-      statusSortAddress: true,
-      statusSortPhone: true,
-      items: [
-        { value: 2, text: 'Tất cả' },
-        { value: 1, text: 'Đang hoạt động' },
-        { value: 0, text: 'Ngừng hoạt động' }
-      ],
-      objectFilter: {
-        filterCode: '',
-        filterName: '',
-        filterAddress: '',
-        filterPhone: '',
-        filterStatus: 2,
-        optionCode: 1,
-        optionName: 1,
-        optionAddress: 1,
-        optionPhone: 1,
-        pageIndex: 1,
-        pageSize: 15
+      storeSelected: '', // Biến lưu store đã chọn
+      storeFake: '', // Biến gắn lại giá trị mặc định cho store
+      isLoading: false, // Biến ẩn/hiện icon loading
+      totalPage: 1, // Tổng số trang
+      curentPage: 1, // Trang hiện tại
+      pageSize: 15, // Số bản ghi/trang
+      totalRecord: 0, // Tổng số bản ghi
+      statusSortCode: true, // Biến sắp xếp theo mã cửa hàng
+      statusSortName: true, // Biến sắp xếp theo mã cửa hàng
+      statusSortAddress: true, // Biến sắp xếp theo mã cửa hàng
+      statusSortPhone: true, // Biến sắp xếp theo mã cửa hàng
+      items: [], // Giá trị truyền vào prop cho cpn
+      objectFilter: { // Object lưu trữ trạng thái vào các thông tin tìm kiếm
+        filterCode: '', // Nội dung tìm kiếm theo mã
+        filterName: '', // Nội dung tìm kiếm theo tên
+        filterAddress: '', // Nội dung tìm kiếm theo địa chỉ
+        filterPhone: '', // Nội dung tìm kiếm theo số điện thoại
+        filterStatus: 2, // Nội dung tìm kiếm theo trạng thái hoạt động
+        optionCode: 1, // Option tìm kiếm theo mã
+        optionName: 1, // Option tìm kiếm theo mã
+        optionAddress: 1, // Option tìm kiếm theo tên
+        optionPhone: 1, // Option tìm kiếm theo số điện thoại
+        pageIndex: 1, // Option tìm kiếm theo mã
+        pageSize: 15// Option tìm kiếm theo mã
       },
-      objectFilterTemp: {
+      objectFilterTemp: { // Object gán lại giá trị mặc định cho object filter
         filterCode: '',
         filterName: '',
         filterAddress: '',
@@ -231,7 +228,7 @@ export default {
         .post('Stores/Filter', this.objectFilterTemp)
         .then(response => {
           this.listStore = response.data.data
-          this.sizeGrid = response.data.data * 31.4 + 64
+          this.sizeGrid = response.data.data.length * 31.4 + 64
           this.isLoading = false
           this.totalPage = response.data.totalPage
           this.totalRecord = response.data.totalRecord
@@ -269,7 +266,6 @@ export default {
       this.objectFilter.optionAddress = this.$refs.optionAddress.optionSelected.value
       this.objectFilter.optionPhone = this.$refs.optionPhone.optionSelected.value
       this.objectFilter.filterStatus = this.$refs.cbbFilter.itemSelected.value
-      console.log(JSON.stringify(this.objectFilter))
       this.axios
         .post(
           'Stores/Filter', this.objectFilter
@@ -448,13 +444,13 @@ export default {
    */
   mounted () {
     this.isLoading = true
+    this.items = TypeStatus
     this.$refs.cbbFilter.itemSelected = this.items[0]
     this.$refs.cbbFilter.keyFilter = this.items[0].text
     this.axios
       .post('Stores/Filter', this.objectFilter)
       .then(response => {
         this.listStore = response.data.data
-        this.sizeGrid = response.data.data * 31.4 + 64
         this.isLoading = false
         this.totalPage = response.data.totalPage
         this.totalRecord = response.data.totalRecord

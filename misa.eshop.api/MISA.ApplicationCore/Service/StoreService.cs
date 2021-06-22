@@ -6,6 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Reflection;
+using System.Resources;
 using System.Text;
 
 namespace MISA.ApplicationCore.Service
@@ -14,9 +16,11 @@ namespace MISA.ApplicationCore.Service
     {
         #region Constructor
         IBaseRepository<Store> _baseRepository;
+        
         public StoreService(IBaseRepository<Store> baseRepository) : base(baseRepository)
         {
             _baseRepository = baseRepository;
+          
         }
         #endregion
 
@@ -39,7 +43,7 @@ namespace MISA.ApplicationCore.Service
                 {
                     Success = false,
                     MISAcode = Enumeration.MISAcode.Validate,
-                    Message = "Không đúng định dạng !!",
+                    Message = ApplicationCore.Properties.Resources.validateError,
                     FieldNotValids = fields,
                     Data = -1
                 };
@@ -54,7 +58,7 @@ namespace MISA.ApplicationCore.Service
                     {
                         Success = false,
                         MISAcode = Enumeration.MISAcode.Validate,
-                        Message = "Mã cửa hàng đã tồn tại trong hệ thống !!!",
+                        Message = ApplicationCore.Properties.Resources.duplicateStoreCode,
                         Data = -1
                     };
                 }
@@ -79,7 +83,7 @@ namespace MISA.ApplicationCore.Service
                 {
                     Success = false,
                     MISAcode = Enumeration.MISAcode.Validate,
-                    Message = "Sai định dạng !!!",
+                    Message = ApplicationCore.Properties.Resources.validateError,
                     FieldNotValids = isValid,
                     Data = -1
                 };
@@ -94,7 +98,7 @@ namespace MISA.ApplicationCore.Service
                     {
                         Success = false,
                         MISAcode = Enumeration.MISAcode.Validate,
-                        Message = "Id của cửa hàng không tồn tại trong hệ thống !!!",
+                        Message = ApplicationCore.Properties.Resources.storeIdNotFound,
                         Data = -1
                     };
                 }
@@ -116,7 +120,7 @@ namespace MISA.ApplicationCore.Service
                             {
                                 Success = false,
                                 MISAcode = Enumeration.MISAcode.Validate,
-                                Message = "Mã cửa hàng đã tồn tại trong hệ thống !!!",
+                                Message = ApplicationCore.Properties.Resources.duplicateStoreCode,
                                 Data = -1
                             };
                     }
@@ -144,6 +148,10 @@ namespace MISA.ApplicationCore.Service
         }
         public ActionServiceResult GetStoreFilter(ObjectFilter objectFilter)
         {
+            for(var i =0;i< 20; i++)
+            {
+                var demo = i;
+            }
             var param = this.MappingDataType<ObjectFilter>(objectFilter);
             param.Add("TotalRecord", dbType: DbType.Int32, direction: ParameterDirection.Output);
             var result = _baseRepository.Get($"Proc_FilterStore", param, commandType: CommandType.StoredProcedure);
@@ -153,7 +161,7 @@ namespace MISA.ApplicationCore.Service
             {
                 Success = true,
                 MISAcode = Enumeration.MISAcode.Success,
-                Message = "Lấy dữ liệu thành công !!!",
+                Message = ApplicationCore.Properties.Resources.getSuccess,
                 Data = result,
                 TotalPage = toltalPage,
                 TotalRecord = totalRecord

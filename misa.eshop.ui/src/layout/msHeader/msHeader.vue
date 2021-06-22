@@ -3,7 +3,7 @@
     <div class="ms-header-title">Cửa hàng</div>
     <div class="ms-header-box-inner">
       <div class="ms-box-combobox">
-        <ms-combobox :items="this.items"/>
+        <ms-combobox :items="this.items" ref="cbbHeader" class="ms-cbb-header"/>
       </div>
       <div class="account">
         <div class="account-img"></div>
@@ -31,13 +31,17 @@ export default {
   data () {
     return {
       items: [
-        { value: 0, text: 'Cửa hàng 1' },
-        { value: 1, text: 'Cửa hàng 2' },
-        { value: 2, text: 'Cửa hàng 3' },
-        { value: 3, text: 'Cửa hàng 4' },
-        { value: 4, text: 'Cửa hàng 5' }
+        { value: 0, text: 'Chi nhánh 1' },
+        { value: 1, text: 'Chi nhánh 2' },
+        { value: 2, text: 'Chi nhánh 3' },
+        { value: 3, text: 'Chi nhánh 4' },
+        { value: 4, text: 'Chi nhánh 5' }
       ]
     }
+  },
+  mounted () {
+    this.$refs.cbbHeader.itemSelected = this.items[0]
+    this.$refs.cbbHeader.keyFilter = this.items[0].text
   }
 }
 </script>

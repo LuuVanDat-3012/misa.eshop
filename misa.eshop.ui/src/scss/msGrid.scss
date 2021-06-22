@@ -55,6 +55,8 @@
     box-sizing: border-box;
     padding: 0.3125rem 0.625rem;
     border: 0.0625rem solid #dfdfdf;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .ms-input:focus {
@@ -279,8 +281,9 @@ thead {
 
 .ms-filter {
     .ms-combobox {
-        width: 145px;
+        width: 140px;
         height: 2rem;
+        margin-left: 1px;
     }
     .combobox-container {
         width: 100%;
@@ -290,10 +293,12 @@ thead {
         box-sizing: border-box;
         border: 1px solid #dfdfdf;
         .ms-input-cbb {
-            width: 8.75rem;
+            width: 120px;
             height: 1.8125rem;
             padding: 0.3125rem;
             box-sizing: border-box;
+            position: absolute;
+            left: 0;
         }
         .dropdow-button {
             width: 1.25rem;

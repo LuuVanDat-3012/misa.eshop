@@ -9,7 +9,7 @@
 
             <div class="popop-content">
                 <div class="content-icon"></div>
-                <div class="content-text">Bạn có chắc muốn xoá <b>{{store.storeName}}</b> khỏi danh sách cửa hàng?</div>
+                <div class="content-text">Bạn có chắc chắn muốn xoá <b>{{store.storeName}}</b> khỏi danh sách cửa hàng?</div>
             </div>
 
             <div class="popup-button">
